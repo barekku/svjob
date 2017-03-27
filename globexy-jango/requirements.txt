@@ -1,0 +1,14 @@
+django
+websocket-client
+redis
+# Install on production server manualy
+# hiredis
+django-redis-sessions
+python-redis-lock
+django-oauth-toolkit
+django-settings-export
+django-json-rpc
+pytz
+qrcode
+pillow
+rsa

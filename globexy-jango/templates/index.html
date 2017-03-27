@@ -1,0 +1,36 @@
+{% extends "base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+<div id="content-main">
+    <!--<div class="bgtest"></div>-->
+    <debug-log id="debuglog" debug="true"> </debug-log>
+    <watch-dog id="watchdog"></watch-dog>
+    <net-peasant id="networker"></net-peasant>
+    <data-storager id="storager"></data-storager>
+    <full-handler id="fullhandler"></full-handler>
+    <message-box id="messenger"></message-box>
+    <app-router trailingSlash="ignore" mode="hashchange">
+      <app-route path="/" import="/static/app/pages/start-page/start-page.html"></app-route>
+      <app-route path="/projects" import="/static/app/pages/project-page/project-page.html"></app-route>
+      <app-route path="/loaddemo" import="/static/app/pages/loaddemo-page/loaddemo-page.html"></app-route>
+      <app-route path="/test" import="/static/app/pages/test-page/test-page.html"></app-route>
+      <app-route path="/editor" import="/static/app/pages/editor-page/editor-page.html"></app-route>
+      <app-route path="/blockeditor" import="/static/app/pages/blockeditor-page/blockeditor-page.html"></app-route>
+      <app-route path="/logic" import="/static/app/pages/logic-page/logic-page.html"></app-route>
+      <app-route path="/edit" import="/static/app/pages/edit-page/edit-page.html"></app-route>
+      <app-route path="/main" import="/static/app/pages/main-page/main-page.html"></app-route>
+      <app-route path="/fail" import="/static/app/pages/fail-page/fail-page.html"></app-route>
+      <app-route path="/register" import="/static/app/pages/register-page/register-page.html"></app-route>
+      <!--<app-route path="/wysiwyg" import="/static/app/pages/wysiwyg-page/wysiwyg-page.html"></app-route>-->
+      <app-route path="/console" import="/static/app/components/elements-console/console-page.html"></app-route>
+      <app-route path="*" redirect="/"></app-route>
+    </app-router>
+<!--TODO Подключил bootstrap & jquery в главную, надо через bower -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</div>
+{% endblock %}

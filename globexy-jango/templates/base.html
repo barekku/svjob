@@ -1,0 +1,74 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	
+	<script type="text/javascript">
+		var AUTH_SERVER = "{{ settings.AUTH_SERVER }}";
+		var RC_SERVER = "{{ settings.RC_SERVER }}";
+		var SCRIPT_SERVER = "{{ settings.SCRIPT_SERVER }}";
+	</script>
+
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/vendor/ajax/dist/ajax.min.js"></script>
+    <script src="/static/vendor/babel-polyfill/browser-polyfill.js"></script>
+
+    <!--TODO ADDED LINKS, BE CARE-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i&subset=cyrillic" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="/static/vendor/webcomponentsjs/webcomponents.min.js"></script>
+    <!--<link rel="import" href="/static/vendor/iron-component-page/iron-component-page.html">-->
+    <link rel="import" href="/static/vendor/app-router/app-router.html">
+    <link rel="import" href="/static/app/services/debug-log/debug-log.html">
+    <link rel="import" href="/static/app/services/watch-dog/watch-dog.html">
+    <link rel="import" href="/static/app/services/net-peasant/net-peasant.html">
+    <link rel="import" href="/static/app/services/data-storager/data-storager.html">
+    <link rel="import" href="/static/app/services/full-handler/full-handler.html">
+    <title>Globexy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, max-scale=1.0, user-scalable=no">
+    <script src='/static/vendor/nprogress/nprogress.js'></script>
+    <link rel='stylesheet' href='/static/vendor/nprogress/nprogress.css'/>
+    <link rel="import" href="/static/app/pages/start-page/start-page.html">
+    <link rel="import" href="/static/app/pages/project-page/project-page.html">
+    <link rel="import" href="/static/app/pages/loaddemo-page/loaddemo-page.html">
+    <link rel="import" href="/static/app/pages/test-page/test-page.html">
+    <link rel="import" href="/static/app/pages/editor-page/editor-page.html">
+    <link rel="import" href="/static/app/pages/logic-page/logic-page.html">
+    <link rel="import" href="/static/app/pages/edit-page/edit-page.html">
+    <link rel="import" href="/static/app/pages/main-page/main-page.html">
+    <link rel="import" href="/static/app/pages/fail-page/fail-page.html">
+    <link rel="import" href="/static/app/pages/register-page/register-page.html">
+    <!--<link rel="import" href="/static/app/pages/wysiwyg-page/wysiwyg-page.html">-->
+    <link rel="import" href="/static/app/pages/blockeditor-page/blockeditor-page.html">
+    <link rel="import" href="/static/app/components/message-box/message-box.html">
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+
+<!-- Container -->
+<div id="container">
+
+    <!-- Content -->
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block content %}
+        {{ content }}
+        {% endblock %}
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+__pycache__/
+env/
+venv/
+virtualenv/
+*.geany
+.project
+.pydevproject
+.settings/
+*.pyc
+*.pyo
+settings_local.py
+db.sqlite3

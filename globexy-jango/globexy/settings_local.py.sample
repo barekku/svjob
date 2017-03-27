@@ -1,0 +1,23 @@
+import os
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS_HOST = 'localhost'
+SESSION_REDIS_PORT = 6379
+SESSION_REDIS_DB = 0
+SESSION_REDIS_PREFIX = 'session'
+SESSION_REDIS_SOCKET_TIMEOUT=1
+
+AUTH_SERVER = 'ws://192.168.10.66:48081'
+RC_SERVER = 'ws://192.168.10.66:48080'
+SCRIPT_SERVER = 'ws://192.168.10.66:48078'
+
+POLYMER_GUI = '../polymer'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    POLYMER_GUI,
+]

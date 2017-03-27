@@ -1,0 +1,64 @@
+<link rel="import" href="../../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/iron-collapse/iron-collapse.html">
+
+<dom-module id="object-search">
+ <link rel="stylesheet" href="object-search.css">
+ <style>
+   .selected{background-color: blue}
+ </style>
+    <template>
+        <paper-button class="flat-dark" on-tap="openSearchDialog"><content></content></paper-button>
+        <paper-dialog id="searchDialog" class="dialog dark-theme" modal style="overflow-y:scroll;text-align:center;width: 90vw">
+            <!--<paper-spinner active="[[loading]]" style="zoom:4;position:absolute;z-index:100"></paper-spinner>-->
+            <div class="dialog-title">
+                <span class="text">Select object 😻</span>
+                <paper-icon-button icon="icons:close" dialog-dismiss></paper-icon-button>
+            </div>
+            <div class="dialog-content">
+              <paper-dialog-scrollable>
+              <div style="text-align:left;font-weight: bolder">Select pattern </div>
+                <paper-input label="Search" on-change='patternSearch' id="patternSearchField"></paper-input>
+                <div class="move-search-items"><paper-icon-button icon="icons:expand-less" on-tap="switchPatternUp"></paper-icon-button></div>
+                <div class="card-list" id="patternsSearchList">
+                    <template is="dom-repeat" items="[[prototypesShow]]">
+                      <!--<div style="border: 1px solid black;border-radius: 3px;">[[item.meta.name]]<div>-->
+                      <paper-button on-tap="selectPrototype">[[item.meta.name]]</paper-button>
+                    </template>
+                </div>
+                <div class="move-search-items"><paper-icon-button icon="icons:expand-more" on-tap="switchPatternDown"></paper-icon-button></div>
+            <div class="dialog-content">
+              <div style="text-align:left;font-weight: bolder">Select object</div>
+                <paper-input label="Search" on-change='objectsGetBase' id='objectSearchField'></paper-input>
+                <!--<template is="dom-if" if="{{isSelected}}"> -->
+                  <div id="expandParamsSearch" style="text-align:left"> 
+                    <div>Advanced search<paper-icon-button icon="icons:toc" on-tap="_toggle"></paper-icon-button></div>
+                    <iron-collapse>
+                      Parameters
+                      <template is="dom-repeat" items="{{parameters}}">
+                        <div><paper-input class="search-object-params" label="{{item}}" on-change="objectsGetBase"></paper-input></div> 
+                      </template>
+                    </iron-collapse>
+                  </div>
+                <!--</template>-->
+                <div class="move-search-items"><paper-icon-button icon="icons:expand-less" on-tap="switchObjectsUp"></paper-icon-button></div>
+                <div class="card-list" id="objectsSearchList"> 
+                    <template is="dom-repeat" items="[[objectsShow]]">
+                      <!--<div style="border: 1px solid black;border-radius: 3px;">[[item.meta.name]]<div>-->
+                      <!--<paper-button on-tap="selectObject" title="[[item.meta.name]]" style="text-overflow:hidden;white-space:nowrap;text-align:left;max-width:80px;max-height:40px;">[[item.meta.name]]</paper-button>-->
+                      <paper-button on-tap="selectObject" title="[[item.meta.name]]">[[item.meta.name]]</paper-button>
+                    </template>
+                    <!--<paper-icon-button icon="icons:more-horiz">-->
+                </div>
+                <div class="move-search-items"><paper-icon-button icon="icons:expand-more" on-tap="switchObjectsDown"></paper-icon-button></div>
+              </div>
+              </paper-dialog-scrollable>
+            </div>
+            <div style="text-align: center"><paper-button dialog-confirm>ok</paper-button></div>
+        </paper-dialog>
+    </template>
+    <script src="object-search.js"></script>
+</dom-module>

@@ -1,0 +1,171 @@
+<link rel="import" href="../../elements/site-base/site-base.html">
+<link rel="import" href="../../elements/object-search/object-search.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../../bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+
+<dom-module id="compare-page">
+  <template>
+    <link rel="stylesheet" href="compare-page.css">
+    <style is="custom-style" include="app-theme">
+            
+      .container2{
+        position: relative;
+        width: 92vw;
+        /*border: 1px solid black;*/
+        overflow: visible;
+      }
+      .column{
+        min-width: 100px;
+        /*width: 11vw;*/
+        display: table-cell; 
+        /*border: 1px solid green;*/
+        vertical-align: top;
+        overflow: visible;
+        padding: 0 5px;
+      }
+      .ipTitle{
+        position: relative;
+        min-width: 160px;
+        min-height: 160px;
+        /*width: 11vw;*/
+        height: 6vw;
+        margin: 0;
+        padding: 1px;
+        background-color: inherit;
+        overflow: hidden;
+        border-radius: 18px;
+        /*padding:10px;*/
+      }
+      .ipTitle div.head{
+        position: absolute;
+        bottom:20px;
+        left: 5px;
+        right: 5px;
+        font-weight: bolder;
+        color: white;
+        background-color: rgba(66,66,66,0.5); 
+      }
+      .ipTitle img{
+        max-height: 100%;
+        min-height: 100%;
+        /*max-width: 100%;*/
+        min-width:100%;
+        display: block;
+        margin: auto;        
+      }
+      .propNames{
+        /*margin-top:-150px;*/
+        /*margin-top:20px;*/
+        overflow-y: visible;
+      }
+      .propNames>div{
+        padding: 5px 0;
+        font-family: "RobotoRegular", sans-serif;
+        font-size: 14px;
+        color: rgb(66,66,66);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 11vw;
+        /*width: 200px;*/
+        /*display: table-row;*/
+        /*border-bottom: 1px solid black;*/
+      }
+      .columns{
+        /*position: relative;*/
+        display: table-cell;
+        max-width: 81vw;
+        overflow: hidden;
+      }
+      .colcontscroll>div{
+        height: 1px;
+      }
+      .colcontscroll{
+        display: none;
+        position: absolute;
+        /*top: 11vw;*/
+        margin-left: 0px;
+        width: 81vw;
+        /*height:10px;*/
+        overflow-x: scroll; 
+        overflow-y: hidden; 
+        z-index: 10;
+      }
+      #colcontscrolld{
+        /*width: 2000px;*/
+      }
+/*new*/
+      
+      iron-icon.deletion{
+        position: absolute;
+        top:4px;
+        right: 4px;
+        cursor: pointer;
+        color:white;
+        background-color: rgba(0,0,0,0.5);
+        border-radius: 24px;
+      }
+
+    </style>
+
+    <site-base>
+      <header class="full-width">
+          <span class="header-text">Сравнение объектов</span>
+          <span style="font-size:16px;"><object-search multi on-selectobject="selObj" on-unselectobject="unselObj" on-iron-overlay-closed="_closeSearch">Выбрать объекты</object-search></span>
+      </header>
+<!--old version-->
+      <div class="container2">
+        <div class="column" style="width:11vw">
+          <div class="ipTitle" style="font-weight:bolder;">
+            <div style="position: absolute;bottom:5px;width:100%;">Параметры</div>
+          </div>
+          <div class="propNames">
+            <template is="dom-repeat" items="[[aggparams]]" as="agg">
+              <div style="padding-left:20px;">{{agg}}</div>
+            </template>
+          </div>
+        </div> 
+
+        <div class="columns" id='scrcols'>
+          <template is="dom-repeat" items="[[oarray]]">
+            <div class="column" data-arg="{{index}}" draggable="true" on-drag="dragStart" on-dragover='allowDrop' on-drop="dragStop">
+                <div class="ipTitle">
+                  <img src="[[item.additional.image]]" draggable="false"/>
+                  <div class='head' draggable="false">[[item.meta.name]]</div>
+                  <iron-icon icon="icons:delete-forever" class="deletion" on-tap="objRemove"></iron-icon>
+                </div>
+                <div class="propNames">
+                <template is="dom-repeat" items="[[aggparams]]" as="agg" draggable="false">
+                  <div style="width:100%;text-align:center;" draggable="false">{{getParam(item.object,agg)}}</div>
+                </template>
+                </div>
+            </div>
+          </template>
+        <div class="colcontscroll" id="colcontscroll" on-scroll="onScroll"><div id="colcontscrolld"></div></div>
+        </div>
+      </div>
+      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+<hr/>      
+    </site-base>
+  </template>
+  <script src="compare-page.js"></script>
+</dom-module>
